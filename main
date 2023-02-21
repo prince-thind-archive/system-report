@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PURPLE='\033[1;35m'
+NC='\033[0m'
+function motherBoardInfo() {
+    printf "${PURPLE}MotherBoardInfo:${NC}\n";
+    echo -e "\t=============================="
+    sed -e '1,6d' <(dmidecode -t 2);
+    echo -e "\t=============================="
+}
+
+motherBoardInfo
