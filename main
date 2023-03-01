@@ -16,5 +16,13 @@ function cpuInfo() {
     echo -e "\t==============================\n\n"
 }
 
+function monitorInfo(){
+    printf "${PURPLE}Display Related Information:${NC}\n";
+    echo -e "\t=============================="
+    sudo lshw -c display
+    echo -e "\t==============================\n\n"
+}
+
 motherBoardInfo
 cpuInfo
+monitorInfo
