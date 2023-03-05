@@ -2,6 +2,7 @@
 
 PURPLE='\033[1;35m'
 NC='\033[0m'
+
 function motherBoardInfo() {
     printf "${PURPLE}MotherBoard Info:${NC}\n";
     echo -e "\t=============================="
@@ -23,6 +24,11 @@ function monitorInfo(){
     echo -e "\t==============================\n\n"
 }
 
+function speakerInfo(){
+    aplay --list-devices
+}
+
 motherBoardInfo
 cpuInfo
 monitorInfo
+speakerInfo
