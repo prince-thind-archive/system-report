@@ -38,8 +38,24 @@ function networkInfo(){
     echo -e "\t==============================\n\n"
 }
 
+function ramInfo(){
+    printf "${PURPLE}Network Related Information:${NC}\n";
+    echo -e "\t=============================="
+    free -m
+    echo -e "\t==============================\n\n"
+}
+
+function hardDriveInfo(){
+
+}
+
+function cpuInfo(){
+
+}
+
 motherBoardInfo
 cpuInfo
 monitorInfo
 speakerInfo
 networkInfo
+ramInfo
