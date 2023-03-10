@@ -10,8 +10,8 @@ function motherBoardInfo() {
     echo -e "\t==============================\n\n"
 }
 
-function cpuInfo() {
-    printf "${PURPLE}CPU Information:${NC}\n";
+function cpuInfoHW() {
+    printf "${PURPLE}CPU Hardware Information:${NC}\n";
     echo -e "\t=============================="
     cat /proc/cpuinfo | head -19
     echo -e "\t==============================\n\n"
@@ -63,7 +63,7 @@ ramInfo
 cpuInfo
 hardDriveInfo
 motherBoardInfo
-cpuInfo
 monitorInfo
 speakerInfo
 networkInfo
+cpuInfoHW
