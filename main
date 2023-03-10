@@ -59,6 +59,10 @@ function cpuInfo(){
     echo -e "\t==============================\n\n"
 }
 
+echo "generating system report..."
+tempFile=$(mktemp -q);
+
+{
 ramInfo
 cpuInfo
 hardDriveInfo
@@ -67,3 +71,7 @@ monitorInfo
 speakerInfo
 networkInfo
 cpuInfoHW
+} > $tempFile;
+
+cat $tempFile;
+rm $tempFile;
