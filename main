@@ -25,10 +25,21 @@ function monitorInfo(){
 }
 
 function speakerInfo(){
+    printf "${PURPLE}Sound Related Information:${NC}\n";
+    echo -e "\t=============================="
     aplay --list-devices
+    echo -e "\t==============================\n\n"
+}
+
+function networkInfo(){
+    printf "${PURPLE}Network Related Information:${NC}\n";
+    echo -e "\t=============================="
+    ifconfig
+    echo -e "\t==============================\n\n"
 }
 
 motherBoardInfo
 cpuInfo
 monitorInfo
 speakerInfo
+networkInfo
