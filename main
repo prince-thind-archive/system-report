@@ -39,23 +39,31 @@ function networkInfo(){
 }
 
 function ramInfo(){
-    printf "${PURPLE}Network Related Information:${NC}\n";
+    printf "${PURPLE}RAM Related Information:${NC}\n";
     echo -e "\t=============================="
     free -m
     echo -e "\t==============================\n\n"
 }
 
 function hardDriveInfo(){
-
+    printf "${PURPLE}Hard Drive Related Information:${NC}\n";
+    echo -e "\t=============================="
+    df -h
+    echo -e "\t==============================\n\n"
 }
 
 function cpuInfo(){
-
+    printf "${PURPLE}CPU and RAM Average Usage Related Information:${NC}\n";
+    echo -e "\t=============================="
+    iostat
+    echo -e "\t==============================\n\n"
 }
 
+ramInfo
+cpuInfo
+hardDriveInfo
 motherBoardInfo
 cpuInfo
 monitorInfo
 speakerInfo
 networkInfo
-ramInfo
