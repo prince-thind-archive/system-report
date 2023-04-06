@@ -1,0 +1,24 @@
+#!/bin/bash
+
+status=0;
+
+RED='\033[1;31m'
+NC='\033[0m'
+
+function checkIfExists {
+    if ! type $1 &> /dev/null
+    then printf "${RED}$1 is not installed${NC}\n";
+    status=1;
+    fi;
+
+}
+
+checkIfExists dmidecode;
+checkIfExists aplay;
+checkIfExists lshw;
+checkIfExists ifconfig;
+checkIfExists free;
+checkIfExists df;
+checkIfExists iostat;
+
+exit $status;

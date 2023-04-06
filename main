@@ -1,77 +1,27 @@
 #!/bin/bash
 
 PURPLE='\033[1;35m'
+GREEN='\033[1;34m'
 NC='\033[0m'
 
-function motherBoardInfo() {
-    printf "${PURPLE}MotherBoard Info:${NC}\n";
-    echo -e "\t=============================="
-    sed -e '1,6d' <(dmidecode -t 2);
-    echo -e "\t==============================\n\n"
-}
 
-function cpuInfoHW() {
-    printf "${PURPLE}CPU Hardware Information:${NC}\n";
-    echo -e "\t=============================="
-    cat /proc/cpuinfo | head -19
-    echo -e "\t==============================\n\n"
-}
+echo "Dependeny checking:";
+if ! ./dependency-check; then
+    exit
+fi
 
-function monitorInfo(){
-    printf "${PURPLE}Display Related Information:${NC}\n";
-    echo -e "\t=============================="
-    sudo lshw -c display
-    echo -e "\t==============================\n\n"
-}
 
-function speakerInfo(){
-    printf "${PURPLE}Sound Related Information:${NC}\n";
-    echo -e "\t=============================="
-    aplay --list-devices
-    echo -e "\t==============================\n\n"
-}
+printf "${GREEN}All Dependencies are installed ${NC}"
+echo -e "\ngenerating system report...\n"
 
-function networkInfo(){
-    printf "${PURPLE}Network Related Information:${NC}\n";
-    echo -e "\t=============================="
-    ifconfig
-    echo -e "\t==============================\n\n"
-}
-
-function ramInfo(){
-    printf "${PURPLE}RAM Related Information:${NC}\n";
-    echo -e "\t=============================="
-    free -m
-    echo -e "\t==============================\n\n"
-}
-
-function hardDriveInfo(){
-    printf "${PURPLE}Hard Drive Related Information:${NC}\n";
-    echo -e "\t=============================="
-    df -h
-    echo -e "\t==============================\n\n"
-}
-
-function cpuInfo(){
-    printf "${PURPLE}CPU and RAM Average Usage Related Information:${NC}\n";
-    echo -e "\t=============================="
-    iostat
-    echo -e "\t==============================\n\n"
-}
-
-echo "generating system report..."
-tempFile=$(mktemp -q);
+tempFile=$(mktemp -q)
 
 {
-ramInfo
-cpuInfo
-hardDriveInfo
-motherBoardInfo
-monitorInfo
-speakerInfo
-networkInfo
-cpuInfoHW
-} > $tempFile;
+    ./static;
+    ./average;
+} >$tempFile 2>/dev/null
 
-cat $tempFile;
-rm $tempFile;
+cat $tempFile | less -R 
+rm $tempFile
+
+echo "Exited Normally"
